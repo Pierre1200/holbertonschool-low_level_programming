@@ -1,2 +1,2 @@
 #!/bin/bash
-gcc -c "$CFILES" -o CFILES.o
+gcc -c "$CFILES"
