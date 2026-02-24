@@ -10,7 +10,7 @@ int main(void)
 {
 	int n;
 	int reste;
-	
+
 	srand(time(0));
 	n = rand() - RAND_MAX / 2;
 	reste = n % 10;
