@@ -1,8 +1,52 @@
 #include <stdio.h>
+
 /**
- * main - menu
+ * PerformOperation - executes the selected arithmetic operation
+ * @choice: the operation integer selected by the user
  *
- * Return: 0 Succes
+ * Return: void
+ */
+
+void PerformOperation(int choice)
+{
+int A, B, result;
+printf("A: ");
+scanf("%d", &A);
+printf("B: ");
+scanf("%d", &B);
+	if (choice == 1)
+	{
+		result = A + B;
+		printf("Result: %d\n", result);
+	}
+	else if (choice == 2)
+	{
+		result = A - B;
+		printf("Result: %d\n", result);
+	}
+	else if (choice == 3)
+	{
+		result = A * B;
+		printf("Result: %d\n", result);
+	}
+	else if (choice == 4)
+	{
+		if (B == 0)
+		{
+			printf("Error: Division by zero\n");
+		}
+		else
+		{
+		result = A / B;
+		printf("Result: %d\n", result);
+		}
+	}
+}
+
+/**
+ * main - display menu and handle user input loop
+ *
+ * Return: Always 0 (Success)
  */
 
 int main(void)
@@ -24,7 +68,7 @@ printf("Simple Calculator\n");
 		}
 			else if (choice >= 1 && choice <= 4)
 			{
-
+				PerformOperation(choice);
 			}
 				else
 				{
