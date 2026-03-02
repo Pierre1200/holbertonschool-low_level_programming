@@ -58,36 +58,36 @@ int main(void)
 	unsigned long checksum;
 
 	clock_t t_total_start, t_total_end;
-    clock_t t_phase_start, t_phase_end;
-    double d_total, d_build, d_process, d_reduce;
+	clock_t t_phase_start, t_phase_end;
+	double d_total, d_build, d_process, d_reduce;
 
 	t_total_start = clock();
 
 	t_phase_start = clock();
-    build_dataset();
-    t_phase_end = clock();
-    d_build = (double)(t_phase_end - t_phase_start) / CLOCKS_PER_SEC;
+	build_dataset();
+	t_phase_end = clock();
+	d_build = (double)(t_phase_end - t_phase_start) / CLOCKS_PER_SEC;
 
 	t_phase_start = clock();
-    process_dataset();
-    t_phase_end = clock();
-    d_process = (double)(t_phase_end - t_phase_start) / CLOCKS_PER_SEC;
+	process_dataset();
+	t_phase_end = clock();
+	d_process = (double)(t_phase_end - t_phase_start) / CLOCKS_PER_SEC;
 
 	t_phase_start = clock();
-    checksum = reduce_checksum();
-    t_phase_end = clock();
-    d_reduce = (double)(t_phase_end - t_phase_start) / CLOCKS_PER_SEC;
+	checksum = reduce_checksum();
+	t_phase_end = clock();
+	d_reduce = (double)(t_phase_end - t_phase_start) / CLOCKS_PER_SEC;
 
 	t_total_end = clock();
-    d_total = (double)(t_total_end - t_total_start) / CLOCKS_PER_SEC;
+	d_total = (double)(t_total_end - t_total_start) / CLOCKS_PER_SEC;
 
 	if (checksum == 0ul)
 		printf("impossible\n");
 
 	printf("TOTAL seconds: %.6f\n", d_total);
-    printf("BUILD_DATA seconds: %.6f\n", d_build);
-    printf("PROCESS seconds: %.6f\n", d_process);
-    printf("REDUCE seconds: %.6f\n", d_reduce);
+	printf("BUILD_DATA seconds: %.6f\n", d_build);
+	printf("PROCESS seconds: %.6f\n", d_process);
+	printf("REDUCE seconds: %.6f\n", d_reduce);
 
 	return (0);
 }
