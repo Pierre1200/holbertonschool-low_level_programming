@@ -9,12 +9,13 @@ static int dataset[DATASET_SIZE];
 static unsigned int next_value(unsigned int *state)
 {
 	*state = (*state * 1103515245u) + 12345u;
-	return *state;
+	return (*state);
 }
 
 static void build_dataset(void)
 {
 	unsigned int state;
+
 	int i;
 
 	state = SEED_VALUE;
@@ -25,14 +26,15 @@ static void build_dataset(void)
 static void process_dataset(void)
 {
 	int i;
+
 	int v;
 
 	for (i = 0; i < DATASET_SIZE; i++)
 	{
 		v = dataset[i];
 		v = (v * 3) + (v / 7) - (v % 11);
-		if (v < 0)
-			v = -v;
+	if (v < 0)
+	v = -v;
 		dataset[i] = v;
 	}
 }
@@ -40,40 +42,47 @@ static void process_dataset(void)
 static unsigned long reduce_checksum(void)
 {
 	unsigned long sum;
+
 	int i;
 
 	sum = 0;
 	for (i = 0; i < DATASET_SIZE; i++)
 		sum = (sum * 131ul) + (unsigned long)dataset[i];
-	return sum;
+
+	return (sum);
 }
 
 int main(void)
 {
 	unsigned long checksum;
-	clock_t t_s, t_e, p_s, p_e;
-	double d_t, d_b, d_p, d_r;
+	clock_t t_start_total, t_end_total;
+	clock_t start_build, end_build;
+	clock_t start_process, end_process;
+	clock_t start_reduce, end_reduce;
 
-	t_s = clock();
-	p_s = clock();
+	t_start_total = clock();
+
+	start_build = clock();
 	build_dataset();
-	p_e = clock();
-	d_b = (double)(p_e - p_s) / CLOCKS_PER_SEC;
-	p_s = clock();
+	end_build = clock();
+
+	start_process = clock();
 	process_dataset();
-	p_e = clock();
-	d_p = (double)(p_e - p_s) / CLOCKS_PER_SEC;
-	p_s = clock();
+	end_process = clock();
+
+	start_reduce = clock();
 	checksum = reduce_checksum();
-	p_e = clock();
-	d_r = (double)(p_e - p_s) / CLOCKS_PER_SEC;
-	t_e = clock();
-	d_t = (double)(t_e - t_s) / CLOCKS_PER_SEC;
+	end_reduce = clock();
+
+	t_end_total = clock();
+
 	if (checksum == 0ul)
 		printf("impossible\n");
-	printf("TOTAL seconds: %.6f\n", d_t);
-	printf("BUILD_DATA seconds: %.6f\n", d_b);
-	printf("PROCESS seconds: %.6f\n", d_p);
-	printf("REDUCE seconds: %.6f\n", d_r);
+
+	printf("TOTAL seconds: %.6f\n", (double)(t_end_total - t_start_total) / CLOCKS_PER_SEC);
+	printf("BUILD_DATA seconds: %.6f\n", (double)(end_build - start_build) / CLOCKS_PER_SEC);
+	printf("PROCESS seconds: %.6f\n", (double)(end_process - start_process) / CLOCKS_PER_SEC);
+	printf("REDUCE seconds: %.6f\n", (double)(end_reduce - start_reduce) / CLOCKS_PER_SEC);
+
 	return (0);
 }
