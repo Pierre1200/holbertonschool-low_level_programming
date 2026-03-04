@@ -1,3 +1,3 @@
-##unrelesead
+##Calculatrice##
 
-Simple calculatrice pour nombre entier utilisant une fonction. 
+Simple calculatrice utilisant une fonction. 

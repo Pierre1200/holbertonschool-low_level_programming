@@ -9,25 +9,25 @@
 
 void PerformOperation(int choice)
 {
-int A, B, result;
+float A, B, result;
 printf("A: ");
-scanf("%d", &A);
+scanf("%f", &A);
 printf("B: ");
-scanf("%d", &B);
+scanf("%f", &B);
 	if (choice == 1)
 	{
 		result = A + B;
-		printf("Result: %d\n", result);
+		printf("Result: %.2f\n", result);
 	}
 	else if (choice == 2)
 	{
 		result = A - B;
-		printf("Result: %d\n", result);
+		printf("Result: %.2f\n", result);
 	}
 	else if (choice == 3)
 	{
 		result = A * B;
-		printf("Result: %d\n", result);
+		printf("Result: %.2f\n", result);
 	}
 	else if (choice == 4)
 	{
@@ -38,7 +38,7 @@ scanf("%d", &B);
 		else
 		{
 		result = A / B;
-		printf("Result: %d\n", result);
+		printf("Result: %.2f\n", result);
 		}
 	}
 }
