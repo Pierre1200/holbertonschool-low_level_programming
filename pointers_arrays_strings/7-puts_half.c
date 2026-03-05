@@ -17,8 +17,8 @@ int lon = 0;
 	i = (lon + 1) / 2;
 		while (str[i] != '\0')
 		{
-			i++;
 			_putchar(str[i]);
+			i++;
 		}
 _putchar('\n');
 }
