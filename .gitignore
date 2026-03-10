@@ -1,2 +1,5 @@
-pointers_arrays_strings/2-main-strcpy.c
-pointers_arrays_strings/2-strncpy
+# Ignorer tous les fichiers nommés main.c
+main.c
+
+# Ignorer tous les fichiers exécutables (.exe)
+*.exe
