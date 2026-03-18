@@ -19,7 +19,7 @@ void print_all(const char * const format, ...)
 
 	if (format != NULL)
 	{
-		(format[i] != '\0');
+		while (format[i] != '\0')
 		{
 			switch (format[i])
 			{
@@ -41,7 +41,7 @@ void print_all(const char * const format, ...)
 					{
 						str = "(nil)";
 					}
-					printf("%s%s", sep);
+					printf("%s%s", sep, str);
 					sep = ", ";
 					break;
 			}
