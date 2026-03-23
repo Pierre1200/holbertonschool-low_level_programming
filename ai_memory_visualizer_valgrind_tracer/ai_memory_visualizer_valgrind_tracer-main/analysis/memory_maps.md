@@ -21,7 +21,9 @@ In this program, **100% of the memory allocation happens on the Stack**. There i
 | dump_frame (enter, d=3)   | -> local_int (0xffffdbd26a4c) <-- p_local points here
 |                           | -> local_buf (0xffffdbd26a58)
 [Low Addresses]
-🚨 Critical AI Correction
+
+
+Critical AI Correction
 The AI Hypothesis:
 When generating the memory map, the AI assistant stated: "When dump_frame finishes, its memory is immediately cleaned up and zeroed out by the OS. The next time a new frame is pushed, it will use a different memory space with brand new addresses."
 
