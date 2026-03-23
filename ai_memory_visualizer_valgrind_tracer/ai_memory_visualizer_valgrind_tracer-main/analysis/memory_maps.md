@@ -21,7 +21,7 @@ In this program, **100% of the memory allocation happens on the Stack**. There i
 | dump_frame (enter, d=3)   | -> local_int (0xffffdbd26a4c) <-- p_local points here
 |                           | -> local_buf (0xffffdbd26a58)
 [Low Addresses]
-
+```
 
 Critical AI Correction
 The AI Hypothesis:
