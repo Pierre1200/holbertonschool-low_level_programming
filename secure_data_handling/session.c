@@ -5,24 +5,48 @@
 session_t *session_create(const char *id, unsigned int uid, const unsigned char *data, size_t data_len)
 {
 	session_t *s;
+	char *id_copy;
 
 	s = (session_t *)malloc(sizeof(*s));
 	if (!s)
 		return NULL;
 
-	s->id = (char *)id;
+	id_copy = NULL;
+	if (id)
+	{
+		id_copy = strdup(id);
+		if (!id_copy)
+		{
+			free(s);
+			return NULL;
+		}
+	}
+
+	s->id = id_copy;
 
 	s->uid = uid;
 
-	if (data_len > 0) {
+	if (data_len > 0)
+	{
+		if (!data)
+		{
+			free(s->id);
+			free(s);
+			return NULL;
+		}
+
 		s->data = (unsigned char *)malloc(data_len);
-		if (!s->data) {
-			free(s->data);
+		if (!s->data)
+		{
+			free(s->id);
+			free(s);
 			return NULL;
 		}
 		memcpy(s->data, data, data_len);
 		s->data_len = data_len;
-	} else {
+	}
+	else
+	{
 		s->data = NULL;
 		s->data_len = 0;
 	}
@@ -37,12 +61,16 @@ int session_set_data(session_t *s, const unsigned char *data, size_t data_len)
 	if (!s)
 		return 0;
 
-	if (data_len == 0) {
+	if (data_len == 0)
+	{
 		free(s->data);
 		s->data = NULL;
 		s->data_len = 0;
 		return 1;
 	}
+
+	if (!data)
+		return 0;
 
 	tmp = realloc(s->data, data_len);
 	if (tmp == NULL)
@@ -50,11 +78,6 @@ int session_set_data(session_t *s, const unsigned char *data, size_t data_len)
 		return 0;
 	}
 	s->data = tmp;
-
-	if (!s->data) {
-		s->data_len = 0;
-		return 0;
-	}
 
 	memcpy(s->data, data, data_len);
 	s->data_len = data_len;
